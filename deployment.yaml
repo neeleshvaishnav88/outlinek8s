@@ -85,4 +85,24 @@ spec:
   resources:
     requests:
       storage: 5Gi
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: outline
+  namespace: outline
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+   - host: outline.softinator.org
+     http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: outline
+            port:
+              name: http
 
