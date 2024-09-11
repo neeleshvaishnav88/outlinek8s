@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: outline
+  namespace: outline
+  labels:
+    app: outline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: outline
+  template:
+    metadata:
+      labels:
+        app: outline
+    spec:
+      containers:
+        - name: outline
+          image: docker.getoutline.com/outlinewiki/outline:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PGSSLMODE
+              value: "disable"
+            - name: SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: SECRET_KEY
+            - name: UTILS_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: UTILS_SECRET
+            - name: DATABASE_URL
+              value: "postgres://outline:password@outline-postgres:5432/outlinedb"  # Update user, password, and db name accordingly
+            - name: REDIS_URL
+              value: "redis://outline-redis:6379"
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: URL
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: PORT
+            - name: FILE_STORAGE
+              value: "local"
+            - name: FILE_STORAGE_LOCAL_ROOT_DIR
+              value: "/var/lib/outline/data"
+            - name: FILE_STORAGE_UPLOAD_MAX_SIZE
+              value: "26214400"
+            - name: SLACK_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: SLACK_CLIENT_ID
+            - name: SLACK_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: SLACK_CLIENT_SECRET
+          volumeMounts:
+            - name: outline-data
+              mountPath: /var/lib/outline/data
+      volumes:
+        - name: outline-data
+          persistentVolumeClaim:
+            claimName: outline-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: outline
+  namespace: outline
+spec:
+  selector:
+    app: outline
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: outline-data-pvc
+  namespace: outline
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
