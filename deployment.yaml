@@ -53,16 +53,6 @@ spec:
               value: "/var/lib/outline/data"
             - name: FILE_STORAGE_UPLOAD_MAX_SIZE
               value: "26214400"
-            - name: SLACK_CLIENT_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: outline-config
-                  key: SLACK_CLIENT_ID
-            - name: SLACK_CLIENT_SECRET
-              valueFrom:
-                configMapKeyRef:
-                  name: outline-config
-                  key: SLACK_CLIENT_SECRET
           volumeMounts:
             - name: outline-data
               mountPath: /var/lib/outline/data
