@@ -106,5 +106,5 @@ spec:
           service:
             name: outline
             port:
-              name: http
+              number: 3000
 
