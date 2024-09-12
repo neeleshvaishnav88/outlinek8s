@@ -24,7 +24,7 @@ spec:
             - name: PGSSLMODE
               value: "disable"
             - name: FORCE_HTTPS
-               value: "false"
+              value: "false"
             - name: SECRET_KEY
               valueFrom:
                 configMapKeyRef:
