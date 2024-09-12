@@ -97,7 +97,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-   - host: outline.softinator.org
+   - host: outlines.softinator.org
      http:
       paths:
       - path: /
