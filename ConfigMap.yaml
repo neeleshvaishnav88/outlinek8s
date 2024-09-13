@@ -4,8 +4,8 @@ metadata:
   name: outline-config
   namespace: outline
 data:
-  SECRET_KEY: "v/JLZS4xfzvH6QDgp/HL4R4a5HqZuJLmE6vDCN/XMzM="  # Replace with your generated secret key
-  UTILS_SECRET: "uhvcCIhXZlVtgDweMJwiUYOh/Tt09MnzPpjclixL/Lk=" 
+  SECRET_KEY: "b4fa6d5649eb02350671574816fcf369b955d877c6bf1708f04750e9987243d5"  # Replace with your generated secret key
+  UTILS_SECRET: "87064ce60fc0529616e0e31415d80db9a0d667d05021020a432bb325738162ad" 
   URL: "http://outline.softinator.org" # Replace with your generated utils secret  # Update with your Outline URL
   PORT: "3000"
   # Add your Slack client secret
