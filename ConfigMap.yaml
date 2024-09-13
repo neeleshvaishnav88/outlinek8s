@@ -6,6 +6,6 @@ metadata:
 data:
   SECRET_KEY: "v/JLZS4xfzvH6QDgp/HL4R4a5HqZuJLmE6vDCN/XMzM="  # Replace with your generated secret key
   UTILS_SECRET: "uhvcCIhXZlVtgDweMJwiUYOh/Tt09MnzPpjclixL/Lk="  # Replace with your generated utils secret
-  URL: "http://outline.softinator.org"  # Update with your Outline URL
+  URL: "http://localhost:3000"  # Update with your Outline URL
   PORT: "3000"
   # Add your Slack client secret
