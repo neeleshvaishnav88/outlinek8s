@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: outline
-          image: razorpay/outline
+          image: razorpay/outline:v0.37.0
           ports:
             - containerPort: 3000
           env:
