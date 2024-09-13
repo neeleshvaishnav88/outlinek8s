@@ -39,6 +39,11 @@ spec:
               value: "postgres://outline:password@outline-postgres:5432/outlinedb"  # Update user, password, and db name accordingly
             - name: REDIS_URL
               value: "redis://outline-redis:6379"
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: outline-config
+                  key: URL
             - name: PORT
               valueFrom:
                 configMapKeyRef:
@@ -102,4 +107,3 @@ spec:
             name: outline
             port:
               number: 3000
-
