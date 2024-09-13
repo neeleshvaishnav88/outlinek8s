@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: outline
-          image: docker.getoutline.com/outlinewiki/outline:latest
+          image: razorpay/outline
           ports:
             - containerPort: 3000
           env:
@@ -26,10 +26,7 @@ spec:
             - name: FORCE_HTTPS
               value: "false"
             - name: SECRET_KEY
-              valueFrom:
-                configMapKeyRef:
-                  name: outline-config
-                  key: SECRET_KEY
+              value: "b4fa6d5649eb02350671574816fcf369b955d877c6bf1708f04750e9987243d5"
             - name: UTILS_SECRET
               valueFrom:
                 configMapKeyRef:
